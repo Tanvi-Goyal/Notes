@@ -31,12 +31,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<GridHolder> {
     AlertDialog.Builder dialogBuilder;
     AlertDialog alertDialog;
     private DatabaseHelper db;
-
     private LayoutInflater mInflater;
-
-    public RecyclerAdapter() {
-
-    }
 
     public RecyclerAdapter(View view, ArrayList<Note> notes) {
         this.mInflater = LayoutInflater.from(view.getContext());
@@ -56,7 +51,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<GridHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull GridHolder gridHolder, final int i) {
-
 
         Note note = notes.get(i);
         gridHolder.textView.setText(note.getNote());
@@ -137,7 +131,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<GridHolder> {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 delete(v, item, i);
-                return true;
+                return false;
             }
         });
 

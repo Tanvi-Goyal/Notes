@@ -136,19 +136,19 @@ public class Notes extends Fragment {
         }
     }
 
-    private ArrayList<String> inflateArrayList(ArrayList<String> notes) {
+    private ArrayList<Note> inflateArrayList(ArrayList<Note> notes) {
 
-        notes.add("Talk is cheap. Show me the code.");
-        notes.add("when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create.");
-        notes.add("Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.");
-        notes.add("Programs must be written for people to read, and only incidentally for machines to execute.");
-        notes.add("Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning.");
-        notes.add("Punishments include such things as flashbacks, flooding of unbearable emotions, painful body memories, flooding of memories in which the survivor perpetrated against others, self-harm, and suicide attempts.");
-        notes.add("The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct.");
-        notes.add("That's the thing about people who think they hate computers. What they really hate is lousy programmers.");
-        notes.add("Any fool can write code that a computer can understand. Good programmers write code that humans can understand.");
-        notes.add("Give a man a program, frustrate him for a day.\n" +
-                "Teach a man to program, frustrate him for a lifetime.");
+//        notes.add("1", "Talk is cheap. Show me the code.", );
+//        notes.add("when you don't create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create.");
+//        notes.add("Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.");
+//        notes.add("Programs must be written for people to read, and only incidentally for machines to execute.");
+//        notes.add("Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning.");
+//        notes.add("Punishments include such things as flashbacks, flooding of unbearable emotions, painful body memories, flooding of memories in which the survivor perpetrated against others, self-harm, and suicide attempts.");
+//        notes.add("The best programs are written so that computing machines can perform them quickly and so that human beings can understand them clearly. A programmer is ideally an essayist who works with traditional aesthetic and literary forms as well as mathematical concepts, to communicate the way that an algorithm works and to convince a reader that the results will be correct.");
+//        notes.add("That's the thing about people who think they hate computers. What they really hate is lousy programmers.");
+//        notes.add("Any fool can write code that a computer can understand. Good programmers write code that humans can understand.");
+//        notes.add("Give a man a program, frustrate him for a day.\n" +
+//                "Teach a man to program, frustrate him for a lifetime.");
         return notes;
     }
 
