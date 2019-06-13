@@ -1,11 +1,15 @@
 package com.example.tanvi.notes;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -19,6 +23,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class Notes extends Fragment {
 
@@ -30,7 +38,11 @@ public class Notes extends Fragment {
     AlertDialog.Builder dialogBuilder;
     AlertDialog alertDialog;
     private DatabaseHelper db;
+    CircleImageView circleImageView;
+    SharedPreferences pref;
 
+    // Editor for Shared preferences
+    SharedPreferences.Editor editor;
     public Notes() {
         // Required empty public constructor
     }
@@ -45,14 +57,26 @@ public class Notes extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_notes, container, false);
+
+        pref = this.getActivity().getSharedPreferences("shared_pref_name", MODE_PRIVATE);
+        editor = pref.edit();
+
         noNotes = view.findViewById(R.id.noNotesView);
         recyclerView = view.findViewById(R.id.rvMain);
+        circleImageView = view.findViewById(R.id.profile_image);
+
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutDialog(v);
+            }
+        });
 
         db = new DatabaseHelper(view.getContext());
 
         notes.addAll(db.getAllNotes());
-//        notes = inflateArrayList(notes);
 
         recyclerAdapter = new RecyclerAdapter(view, notes);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
@@ -68,6 +92,34 @@ public class Notes extends Fragment {
         });
 
         return view;
+    }
+
+    private void logoutDialog(View v) {
+
+        new android.support.v7.app.AlertDialog.Builder(v.getContext())
+                .setMessage("Are you sure you want to Logout ?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        logout();
+
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void logout() {
+        editor.clear();
+        editor.commit();
+
+        Fragment fragment = new Login();
+
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.main_fragment, fragment);
+        ft.commit();
+
     }
 
     private void showDialog(View v, int layout) {
